@@ -36,9 +36,17 @@ function validateRules(req, res, next) {
     res.status(422).send('Uh oh! Something did not work!')
 }
 
+// function loginRules(req, res, next) {
+//     if(req.body.currentUser && req.cookies.user_sid){
+//         console.info('you are in!')
+//         return next()
+//     }
+// }
+
 module.exports = {
     paramNameRules,
     lifeExpectRules,
     bodyNameRules,
-    validateRules
+    validateRules, 
+    // loginRules
 }

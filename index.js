@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const express = require('express')
+const cookieParser = require('cookie-parser')
 const app = express()
 const { port } = require('./config')
 
@@ -7,9 +8,11 @@ const { port } = require('./config')
 const uri = 'mongodb+srv://atlasDB:atlasDB123@cluster0.lqjcz.mongodb.net/firstMongo?retryWrites=true&w=majority'
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(express.urlencoded({
     extended: true
 }))
+
 
 function RoutesInfo(req, res, next) {
     console.info({

@@ -3,7 +3,23 @@ const { validationResult } = require ('express-validator')
 const Dogs = require('./dogModel')
 
 class RouteController {
-    static async ShowAll(req,res) {
+
+    static async Login (req, res){
+        res.send('Login Page')
+    }
+
+    static async LoginPost (req, res){
+        const username = req.body.username,
+                password = req.body.password
+    
+        if(username === 'tofusupreme' && password === 'soundsdelicious'){
+            console.log(`Welcome ${username}`)
+            return res.redirect('/')
+        }
+        res.status(401).send()
+    }
+    
+    static async ShowAll(req, res) {
     let result
     try {
         result = await Dogs.find({})

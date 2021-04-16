@@ -5,12 +5,24 @@ const {
     paramNameRules,
     lifeExpectRules,
     bodyNameRules,
-    validateRules
+    validateRules,
+    // loginRules
 } = require('./validators')
+
 
 const RouteController = require('./routeController')
 
-app.get('/', RouteController.ShowAll)
+app.get('/',
+    // loginRules,
+    RouteController.ShowAll)
+
+app.get('/:login', RouteController.Login)
+
+app.post('/:login', 
+    // loginRules,    
+    RouteController.LoginPost)
+
+
 
 app.get('/:breed', RouteController.ShowOne)
 

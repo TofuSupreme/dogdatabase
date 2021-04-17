@@ -6,29 +6,24 @@ const {
     lifeExpectRules,
     bodyNameRules,
     validateRules,
-    authCheck,
-    authVerified
+    authCheck
 } = require('./validators')
 
 
 const RouteController = require('./routeController')
 
-// app.get('/',
-//     authCheck,
-//     authVerified,
-//     RouteController.ShowAll)
-
-app.get('/', 
-    authCheck,
-    authVerified,
+app.get('/:login', 
     RouteController.Login)
 
-app.post('/:login', 
-    authCheck,
-    authVerified,   
+app.post('/:login',  
     RouteController.LoginPost)
 
-app.get('/:breed', RouteController.ShowOne)
+app.get('/',
+    RouteController.ShowAll)
+
+app.get('/:breed',
+    authCheck,
+    RouteController.ShowOne)
 
 app.post('/',
     bodyNameRules,

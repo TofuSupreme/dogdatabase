@@ -13,10 +13,12 @@ class RouteController {
                 password = req.body.password
     
         if(username === 'tofusupreme' && password === 'soundsdelicious'){
+            req.session.currentUser = username
             console.log(`Welcome ${username}`)
-            return res.redirect('/')
+            return res.redirect('/dogs')
+        } else {
+            return res.status(500).send('Incorrect username or password. Try again')
         }
-        res.status(401).send()
     }
     
     static async ShowAll(req, res) {

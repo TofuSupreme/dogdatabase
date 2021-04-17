@@ -14,6 +14,13 @@ app.use(express.urlencoded({
     extended: true
 }))
 
+app.use(session({
+    key: 'user_sid',
+    secret: 'shibaTosa',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true }
+}))
 
 function RoutesInfo(req, res, next) {
     console.info({
@@ -28,13 +35,6 @@ app.use(RoutesInfo)
 
 const Routes = require('./routes')
 app.use('/dogs', Routes)
-
-app.use(session(({
-    key: 'user_sid',
-    secret: 'shibaTosa',
-    resave: false,
-    saveUninitialized: false
-})))
 
 
 app.listen(port, ()=>{

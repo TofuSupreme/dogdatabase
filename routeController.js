@@ -5,7 +5,7 @@ const Dogs = require('./dogModel')
 class RouteController {
 
     static async Login (req, res){
-        res.send('Login Page')
+        res.send('Welcome! Please Login!')
     }
 
     static async LoginPost (req, res){

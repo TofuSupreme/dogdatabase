@@ -1,5 +1,7 @@
 const {body, param, validationResult} = require('express-validator')
 
+
+
 const paramNameRules = 
     param('breed')
         .notEmpty()
@@ -36,17 +38,31 @@ function validateRules(req, res, next) {
     res.status(422).send('Uh oh! Something did not work!')
 }
 
-// function loginRules(req, res, next) {
-//     if(req.body.currentUser && req.cookies.user_sid){
-//         console.info('you are in!')
-//         return next()
-//     }
-// }
+
+function authVerified(req, res, next) {
+    if(req.body.currentUser && req.cookies.user_sid){
+        console.info({currentUser})
+        return next()
+    }
+}
+
+function authCheck(req, res, next) {
+    if(req.session.currentUser && req.cookies.user_sid){
+        console.log('Welcome!')
+        return next()
+    }
+    console.log('Uh oh, you are not logged in')
+
+    if(req.url === '/') {
+        return next()
+    }
+}
 
 module.exports = {
     paramNameRules,
     lifeExpectRules,
     bodyNameRules,
     validateRules, 
-    // loginRules
+    authCheck,
+    authVerified
 }
